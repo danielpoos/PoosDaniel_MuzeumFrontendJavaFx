@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.muzeumfrontendjavafx.Controller">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <children>
+        <HBox prefHeight="0.0" prefWidth="200.0">
+            <children>
+                <Button onAction="#addBtnClick" mnemonicParsing="false" text="Button"/>
+                <Button onAction="#modBtnClick" mnemonicParsing="false" text="Button"/>
+                <Button onAction="#delBtnClick" mnemonicParsing="false" text="Button"/>
+            </children>
+        </HBox>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" fx:id="tab">
+            <tabs>
+                <Tab text="Statues">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <ListView fx:id="statueListView" prefHeight="200.0" prefWidth="200.0"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Paintings">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <ListView fx:id="paintingListView" prefHeight="200.0" prefWidth="200.0"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</VBox>
