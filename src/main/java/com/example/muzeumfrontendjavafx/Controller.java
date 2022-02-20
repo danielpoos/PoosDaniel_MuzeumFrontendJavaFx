@@ -67,7 +67,7 @@ public class Controller {
     public void addBtnClick(){
         if (tabIndex == 0){
             try{
-                AddController addController = (AddController) newStage("add-view.fxml", "Adding new statue");
+                AddStatueController addController = (AddStatueController) newStage("add-statue-view.fxml", "Adding new statue");
                 addController.stage.setOnCloseRequest(event -> loadStatueTable());
                 addController.stage.show();
             }catch (IOException e){
@@ -76,7 +76,7 @@ public class Controller {
         }
         else if (tabIndex == 1){
             try{
-                AddController addController = (AddController) newStage("add-view.fxml", "Adding new painting");
+                AddPaintingController addController = (AddPaintingController) newStage("add-painting-view.fxml", "Adding new painting");
                 addController.stage.setOnCloseRequest(event -> loadPaintingTable());
                 addController.stage.show();
             }catch (IOException e){
@@ -89,7 +89,8 @@ public class Controller {
             if (selectedIndex(statueTableView.getSelectionModel().getSelectedIndex())) return;
             Statue onChangeStatue = statueTableView.getSelectionModel().getSelectedItem();
             try{
-                ChangeController changeController = (ChangeController) newStage("change-view.fxml", "Change selected statue");
+                ChangeStatueController changeController = (ChangeStatueController) newStage("change-statue-view.fxml", "Changing selected statue");
+                changeController.setChStatue(onChangeStatue);
                 changeController.stage.setOnHiding(event -> statueTableView.refresh());
                 changeController.stage.show();
             }catch (IOException e){
@@ -100,7 +101,8 @@ public class Controller {
             if (selectedIndex(paintingTableView.getSelectionModel().getSelectedIndex())) return;
             Painting onChangePainting = paintingTableView.getSelectionModel().getSelectedItem();
             try{
-                ChangeController changeController = (ChangeController) newStage("change-view.fxml", "Change selected painting");
+                ChangePaintingController changeController = (ChangePaintingController) newStage("change-painting-view.fxml", "Changing selected painting");
+                changeController.setChPainting(onChangePainting);
                 changeController.stage.setOnHiding(event -> paintingTableView.refresh());
                 changeController.stage.show();
             }catch (IOException e){
@@ -118,6 +120,7 @@ public class Controller {
             boolean s = result.get() == ButtonType.OK;
             if (s) return;
             try {
+                boolean success = Api.deleteStatue(onDeleteStatue.getId());
                 loadStatueTable();
             } catch (Exception e) {
                 errorAlert(e);
@@ -132,6 +135,7 @@ public class Controller {
             boolean s = result.get() == ButtonType.OK;
             if (s) return;
             try {
+                boolean success = Api.deletePainting(onDeletePainting.getId());
                 loadPaintingTable();
             } catch (Exception e) {
                 errorAlert(e);
