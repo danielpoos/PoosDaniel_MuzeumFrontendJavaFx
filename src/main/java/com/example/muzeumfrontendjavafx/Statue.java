@@ -1,22 +1,23 @@
 package com.example.muzeumfrontendjavafx;
 
 public class Statue {
-    private Integer id;
+    private int id;
     private String person;
     private int height;
     private int price;
 
-    public Statue(String person, int height, int price) {
+    public Statue(int id,String person, int height, int price) {
+        this.id = id;
         this.person = person;
         this.height = height;
         this.price = price;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

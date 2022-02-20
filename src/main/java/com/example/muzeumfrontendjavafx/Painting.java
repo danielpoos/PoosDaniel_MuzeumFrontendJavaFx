@@ -1,22 +1,23 @@
 package com.example.muzeumfrontendjavafx;
 
 public class Painting {
-    private Integer id;
+    private int id;
     private String title;
     private int year;
     private boolean onDisplay;
 
-    public Painting(String title, int year, boolean onDisplay) {
+    public Painting(int id,String title, int year, boolean onDisplay) {
+        this.id = id;
         this.title = title;
         this.year = year;
         this.onDisplay = onDisplay;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
