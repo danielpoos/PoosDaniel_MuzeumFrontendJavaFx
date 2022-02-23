@@ -7,22 +7,22 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 
 public class ChangePaintingController extends Controller{
-    @FXML private TextField textfield0;
-    @FXML private Spinner<Integer> spinner1;
-    @FXML private CheckBox check2;
+    @FXML private TextField changePaTF;
+    @FXML private Spinner<Integer> changePaSp;
+    @FXML private CheckBox changePaCheck;
     private Painting chPainting;
     public Painting getChPainting() {return chPainting;}
     public void setChPainting(Painting chPainting) {
-        textfield0.setText(chPainting.getTitle());
-        spinner1.getValueFactory().setValue(chPainting.getYear());
-        check2.allowIndeterminateProperty().setValue(chPainting.isOnDisplay());
+        changePaTF.setText(chPainting.getTitle());
+        changePaSp.getValueFactory().setValue(chPainting.getYear());
+        changePaCheck.allowIndeterminateProperty().setValue(chPainting.isOnDisplay());
         this.chPainting = chPainting;
     }
 
     @FXML public void changeData() {
-        String title = textfield0.getText().trim();
-        int year = spinner1.getValue();
-        boolean onDisplay = check2.isSelected();
+        String title = changePaTF.getText().trim();
+        int year = changePaSp.getValue();
+        boolean onDisplay = changePaCheck.isSelected();
         if (title.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -34,14 +34,14 @@ public class ChangePaintingController extends Controller{
         chPainting.setYear(year);
         chPainting.setOnDisplay(onDisplay);
         try {
-            Painting successful = Api.changePainting(chPainting);
+            boolean successful = Api.changePainting(chPainting);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Info");
-            if (successful != null) alert.setHeaderText("Change successful");
+            if (successful) alert.setHeaderText("Change successful");
             else alert.setHeaderText("Change unsuccessful");
             alert.show();
         } catch (Exception e) {
-            errorAlert(e);
+            e.printStackTrace();
         }
     }
 }

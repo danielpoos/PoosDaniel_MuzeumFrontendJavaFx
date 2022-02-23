@@ -1,23 +1,29 @@
 package com.example.muzeumfrontendjavafx;
 
 public class Statue {
-    private int id;
+    private Integer id;
     private String person;
     private int height;
     private int price;
 
-    public Statue(int id,String person, int height, int price) {
+    public String toJson(){
+        return "{\"person\":\"" + person + '\"' +
+                ",\"height\":" + height  +
+                ",\"price\":" + price +"}";
+    }
+
+    public Statue(Integer id, String person, int height, int price) {
         this.id = id;
         this.person = person;
         this.height = height;
         this.price = price;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

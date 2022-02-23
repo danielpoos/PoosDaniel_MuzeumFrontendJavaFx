@@ -30,9 +30,17 @@
                 <Label text="Person"/>
                 <Label text="Height" GridPane.rowIndex="1"/>
                 <Label text="Price" GridPane.rowIndex="2"/>
-                <TextField GridPane.columnIndex="1" fx:id="textfield0"/>
-                <Spinner GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="spinner1"/>
-                <Spinner GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="spinner2"/>
+                <TextField GridPane.columnIndex="1" fx:id="changeStTF"/>
+                <Spinner GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="changeStSp1" editable="true">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="255" amountToStepBy="1"/>
+                    </valueFactory>
+                </Spinner>
+                <Spinner GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="changeStSp2" editable="true">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="1000000" amountToStepBy="1000"/>
+                    </valueFactory>
+                </Spinner>
             </children>
         </GridPane>
     </children>

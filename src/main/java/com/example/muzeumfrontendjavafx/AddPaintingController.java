@@ -5,16 +5,16 @@ import javafx.scene.control.*;
 
 public class AddPaintingController extends Controller {
     @FXML
-    private TextField textfield0;
+    private TextField addPaTF;
     @FXML
-    private Spinner<Integer> spinner1;
+    private Spinner<Integer> addPaSp;
     @FXML
-    private CheckBox check2;
+    private CheckBox addPaCheck;
 
     public void addData() {
-        String title = textfield0.getText().trim();
-        int year = spinner1.getValue();
-        boolean onDisplay = check2.isSelected();
+        String title = addPaTF.getText().trim();
+        int year = addPaSp.getValue();
+        boolean onDisplay = addPaCheck.isSelected();
         if (title.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -24,14 +24,14 @@ public class AddPaintingController extends Controller {
         }
         try {
             Painting newPainting = new Painting(0, title, year, onDisplay);
-            Painting successful = Api.addPainting(newPainting);
+            boolean successful = Api.addPainting(newPainting);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Info");
-            if (successful != null) alert.setHeaderText("Addition successful");
+            if (successful) alert.setHeaderText("Addition successful");
             else alert.setHeaderText("Addition unsuccessful");
             alert.show();
         } catch (Exception e) {
-            errorAlert(e);
+            e.printStackTrace();
         }
     }
 }

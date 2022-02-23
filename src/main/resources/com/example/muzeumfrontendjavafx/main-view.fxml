@@ -4,51 +4,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="350.0" prefWidth="550.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.muzeumfrontendjavafx.Controller">
+<VBox alignment="CENTER" prefHeight="350.0" prefWidth="550.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.muzeumfrontendjavafx.MainController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <children>
-        <HBox prefHeight="0.0" prefWidth="200.0">
-            <children>
-                <Button mnemonicParsing="false" onAction="#addBtnClick" text="Addition" />
-                <Button mnemonicParsing="false" onAction="#modBtnClick" text="Changing" />
-                <Button mnemonicParsing="false" onAction="#delBtnClick" text="Deletion" />
-            </children>
-        </HBox>
-        <TabPane fx:id="tab" onMouseClicked="#tabClick" prefHeight="265.0" prefWidth="520.0" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab text="Statues">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="510.0">
-                            <children>
-                                <TableView fx:id="statueTableView" prefHeight="238.0" prefWidth="511.0">
-                                    <columns>
-                                        <TableColumn fx:id="personCol" minWidth="100.0" prefWidth="245.0" text="Person" />
-                                        <TableColumn fx:id="heightCol" minWidth="100.0" prefWidth="125.0" text="Height" />
-                                        <TableColumn fx:id="priceCol" minWidth="100.0" prefWidth="125.0" text="Price" />
-                                    </columns>
-                                </TableView>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Paintings">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <TableView fx:id="paintingTableView" prefHeight="238.0" prefWidth="511.0">
-                                    <columns>
-                                        <TableColumn fx:id="titleCol" minWidth="100.0" prefWidth="245.0" text="Title" />
-                                        <TableColumn fx:id="yearCol" minWidth="100.0" prefWidth="125.0" text="Year" />
-                                        <TableColumn fx:id="onDisplayCol" minWidth="100.0" prefWidth="125.0" text="On display" />
-                                    </columns>
-                                </TableView>
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </children>
+    <HBox prefHeight="0.0" prefWidth="200.0">
+        <Button mnemonicParsing="false" onAction="#addBtnClick" text="Addition" />
+        <Button mnemonicParsing="false" onAction="#modBtnClick" text="Changing" />
+        <Button mnemonicParsing="false" onAction="#delBtnClick" text="Deletion" />
+    </HBox>
+    <TabPane fx:id="tab" onMouseClicked="#tabClick" prefHeight="265.0" prefWidth="520.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab text="Statues">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="510.0">
+                <TableView fx:id="statueTableView" prefHeight="238.0" prefWidth="511.0">
+                    <columns>
+                        <TableColumn fx:id="personCol" minWidth="100.0" prefWidth="245.0" text="Person" />
+                        <TableColumn fx:id="heightCol" minWidth="100.0" prefWidth="125.0" text="Height" />
+                        <TableColumn fx:id="priceCol" minWidth="100.0" prefWidth="125.0" text="Price" />
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </Tab>
+        <Tab text="Paintings">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="paintingTableView" prefHeight="238.0" prefWidth="511.0">
+                    <columns>
+                        <TableColumn fx:id="titleCol" minWidth="100.0" prefWidth="245.0" text="Title" />
+                        <TableColumn fx:id="yearCol" minWidth="100.0" prefWidth="125.0" text="Year" />
+                        <TableColumn fx:id="onDisplayCol" minWidth="100.0" prefWidth="125.0" text="On display" />
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </Tab>
+    </TabPane>
 </VBox>

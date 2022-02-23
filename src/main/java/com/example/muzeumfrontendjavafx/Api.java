@@ -3,10 +3,8 @@ package com.example.muzeumfrontendjavafx;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -57,4 +55,89 @@ public class Api {
         JSONParser parser = new JSONParser();
         return (JSONArray) parser.parse(String.valueOf(row));
     }
+
+    public static boolean addStatue(Statue newStatue) throws IOException {
+        String newString = newStatue.toJson();
+        URL url = new URL(statuesUrl);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.connect();
+        BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+        wr.write(newString);
+        wr.flush();
+        wr.close();
+        int responseCode = conn.getResponseCode();
+        return responseCode < 300;
+    }
+    public static boolean addPainting(Painting newPainting) throws IOException  {
+        String newString = newPainting.toJson();
+        URL url = new URL(paintingsUrl);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.connect();
+        BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+        wr.write(newString);
+        wr.flush();
+        wr.close();
+        int responseCode = conn.getResponseCode();
+        return responseCode < 300;
+    }
+    public static boolean changePainting(Painting chPainting) throws Exception {
+        String changeString = chPainting.toJson();
+        URL url = new URL(paintingsUrl+"/"+chPainting.getId());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.connect();
+        BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+        wr.write(changeString);
+        wr.flush();
+        wr.close();
+        int responseCode = conn.getResponseCode();
+        return responseCode < 300;
+    }
+    public static boolean changeStatue(Statue chStatue) throws Exception {
+        String changeString = chStatue.toJson();
+        URL url = new URL(paintingsUrl+"/"+chStatue.getId());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.connect();
+        BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+        wr.write(changeString);
+        wr.flush();
+        wr.close();
+        int responseCode = conn.getResponseCode();
+        return responseCode < 300;
+    }
+    public static boolean deletePainting(Integer id) throws Exception {
+        URL url = new URL(paintingsUrl+"/"+id);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setRequestMethod("DELETE");
+        conn.connect();
+        int responseCode = conn.getResponseCode();
+        return responseCode == 204;
+    }
+    public static boolean deleteStatue(Integer id) throws Exception {
+        URL url = new URL(statuesUrl+"/"+id);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setRequestMethod("DELETE");
+        conn.connect();
+        int responseCode = conn.getResponseCode();
+        return responseCode == 204;
+    }
+
+
 }

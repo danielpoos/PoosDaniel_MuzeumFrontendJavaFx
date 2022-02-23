@@ -1,23 +1,29 @@
 package com.example.muzeumfrontendjavafx;
 
 public class Painting {
-    private int id;
+    private Integer id;
     private String title;
     private int year;
     private boolean onDisplay;
 
-    public Painting(int id,String title, int year, boolean onDisplay) {
+    public String toJson(){
+        return "{\"title\":\"" + title + '\"' +
+                ",\"year\":" + year  +
+                ",\"on_display\":" + onDisplay +"}";
+    }
+
+    public Painting(Integer id,String title, int year, boolean onDisplay) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.onDisplay = onDisplay;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
